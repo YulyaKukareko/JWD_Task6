@@ -1,4 +1,4 @@
-package by.epam.javawebtraining.kukareko.task6.util;
+package by.epam.javawebtraining.kukareko.task6.model.logic.parsing;
 
 import by.epam.javawebtraining.kukareko.task6.model.entity.Publication;
 
