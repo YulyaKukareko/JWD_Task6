@@ -1,0 +1,71 @@
+<publications xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xmlns="http://localhost:8080/publications"
+              xsi:schemaLocation="http://localhost:8080/publications publications.xsd">
+    <programming id="1" rating="10">
+        <page-count>500</page-count>
+        <name>Thinking in Java</name>
+        <font>2</font>
+        <publishing>Classical Computer Science</publishing>
+        <circulation>3000</circulation>
+        <author>Bruce Eckel</author>
+        <subject-area>Base programming knowledge</subject-area>
+        <level>Beginner/Middle</level>
+        <language>Java</language>
+    </programming>
+    <children id="2" rating="8">
+        <page-count>700</page-count>
+        <name>Andersen's tales</name>
+        <font>8</font>
+        <publishing>Olimpia</publishing>
+        <circulation>100000</circulation>
+        <author>Hans Christian Andersen</author>
+        <recommended-age>4+</recommended-age>
+    </children>
+    <musical id="3" rating="7">
+        <page-count>15</page-count>
+        <name>Alternative Press</name>
+        <font>5</font>
+        <publishing>Alternative Press Magazine</publishing>
+        <circulation>400</circulation>
+        <count-articles>20</count-articles>
+        <kind-musical>CLASSIC</kind-musical>
+        <have-disk>false</have-disk>
+    </musical>
+    <science id="4">
+        <page-count>40</page-count>
+        <name>Scientific American</name>
+        <font>4</font>
+        <publishing>Springer Nature</publishing>
+        <circulation>30050</circulation>
+        <count-articles>20</count-articles>
+        <subject-area>Scientific research</subject-area>
+    </science>
+    <sport id="5" rating="6">
+        <page-count>50</page-count>
+        <name>Billiards sport</name>
+        <font>6</font>
+        <publishing>MFBS</publishing>
+        <circulation>100</circulation>
+        <count-articles>30</count-articles>
+        <kind-sport>Billiards</kind-sport>
+    </sport>
+    <album id="6" rating="7">
+        <page-count>70</page-count>
+        <name>Historical album</name>
+        <font>7</font>
+        <publishing>Olimpia</publishing>
+        <circulation>200</circulation>
+        <format>horizontal</format>
+    </album>
+    <instruction id="7">
+        <page-count>30</page-count>
+        <name>Car instruction manual Saturn</name>
+        <font>3</font>
+        <publishing>GM</publishing>
+        <circulation>650</circulation>
+        <author>-</author>
+        <subject-area>Automotive Equipment</subject-area>
+        <level>Beginner/Middle/Experienced</level>
+        <subject>Car instruction manual</subject>
+    </instruction>
+</publications>

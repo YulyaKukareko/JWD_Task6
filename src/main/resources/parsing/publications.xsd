@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+        targetNamespace="http://localhost:8080/publications"
+        xmlns:tns="http://localhost:8080/publications"
+        elementFormDefault="qualified">
+
+    <element name="publications">
+        <complexType>
+            <sequence>
+                <element ref="tns:publication" minOccurs="0" maxOccurs="unbounded" />
+            </sequence>
+        </complexType>
+    </element>
+
+    <complexType name="Publication">
+        <sequence>
+            <element name="page-count" type="positiveInteger" />
+            <element name="name" type="string" />
+            <element name="font" type="positiveInteger" />
+            <element name="publishing" type="string" />
+            <element name="circulation" type="positiveInteger" />
+        </sequence>
+        <attribute name="id" type="long" use="required" />
+        <attribute name="rating" use="optional" />
+        <attribute name="price" use="prohibited" />
+    </complexType>
+
+    <simpleType name="Rating">
+        <restriction base="positiveInteger">
+            <minInclusive value="1" />
+            <maxInclusive value="10" />
+        </restriction>
+    </simpleType>
+
+    <complexType name="Sport">
+        <complexContent>
+            <extension base="tns:Magazine">
+                <sequence>
+                    <element name="kind-sport" type="string" />
+                </sequence>
+            </extension>
+        </complexContent>
+    </complexType>
+
+    <complexType name="Science">
+        <complexContent>
+            <extension base="tns:Magazine">
+                <sequence>
+                    <element name="subject-area" type="string" />
+                </sequence>
+            </extension>
+        </complexContent>
+    </complexType>
+
+    <complexType name="Musical">
+        <complexContent>
+            <extension base="tns:Magazine">
+                <sequence>
+                    <element name="kind-musical" type="tns:Kind-musical" />
+                    <element name="have-disk" type="boolean" />
+                </sequence>
+            </extension>
+        </complexContent>
+    </complexType>
+
+    <complexType name="Magazine">
+        <complexContent>
+            <extension base="tns:Publication">
+                <sequence>
+                    <element name="count-articles" type="positiveInteger" />
+                </sequence>
+            </extension>
+        </complexContent>
+    </complexType>
+
+    <complexType name="Technical">
+        <complexContent>
+            <extension base="tns:Book">
+                <sequence>
+                    <element name="subject-area" type="string" />
+                    <element name="level" type="string" />
+                </sequence>
+            </extension>
+        </complexContent>
+    </complexType>
+    
+    <simpleType name="Level">
+        <restriction base="string">
+            <pattern value="^(Middle)|(Beginner)|(Specialist)"/>
+        </restriction>
+    </simpleType>
+
+    <complexType name="Programming">
+        <complexContent>
+            <extension base="tns:Technical">
+                <sequence>
+                    <element name="language" type="string" />
+                </sequence>
+            </extension>
+        </complexContent>
+    </complexType>
+
+    <complexType name="Instruction">
+        <complexContent>
+            <extension base="tns:Technical">
+                <sequence>
+                    <element name="subject" type="string" />
+                </sequence>
+            </extension>
+        </complexContent>
+    </complexType>
+
+    <complexType name="Children">
+        <complexContent>
+            <extension base="tns:Book">
+                <sequence>
+                    <element name="recommended-age" type="tns:RecommendedAge" />
+                </sequence>
+            </extension>
+        </complexContent>
+    </complexType>
+
+    <simpleType name="RecommendedAge">
+        <restriction base="string">
+            <length value="2" />
+        </restriction>
+    </simpleType>
+
+    <complexType name="Book">
+        <complexContent>
+            <extension base="tns:Publication">
+                <sequence>
+                    <element name="author" type="string" />
+                </sequence>
+            </extension>
+        </complexContent>
+    </complexType>
+
+    <complexType name="Album">
+        <complexContent>
+            <extension base="tns:Publication">
+                <sequence>
+                    <element name="format" type="string" />
+                </sequence>
+            </extension>
+        </complexContent>
+    </complexType>
+
+    <simpleType name="Kind-musical">
+        <restriction base="string">
+            <enumeration value="CLASSIC" />
+            <enumeration value="POP" />
+            <enumeration value="HIP_HOP" />
+            <enumeration value="ROCK" />
+            <enumeration value="ELECTRO" />
+            <enumeration value="JAZZ" />
+            <enumeration value="BLUES" />
+        </restriction>
+    </simpleType>
+
+    <element name="publication" type="tns:Publication" abstract="true" />
+    <element name="book" type="tns:Book" abstract="true" substitutionGroup="tns:publication" />
+    <element name="magazine" type="tns:Magazine" abstract="true" substitutionGroup="tns:publication" />
+    <element name="technical" type="tns:Technical" abstract="true" substitutionGroup="tns:book" />
+    <element name="sport" type="tns:Sport" substitutionGroup="tns:magazine" />
+    <element name="science" type="tns:Science" substitutionGroup="tns:magazine" />
+    <element name="musical" type="tns:Musical" substitutionGroup="tns:magazine" />
+    <element name="programming" type="tns:Programming" substitutionGroup="tns:technical" />
+    <element name="album" type="tns:Album" substitutionGroup="tns:publication" />
+    <element name="instruction" type="tns:Instruction" substitutionGroup="tns:technical" />
+    <element name="children" type="tns:Children" substitutionGroup="tns:book" />
+
+</schema>

@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+<log4j:configuration>
+
+    <appender name="ROOT" class="org.apache.log4j.FileAppender">
+
+        <param name="file" value="src/main/resources/log/rootLogger.log"/>
+        <param name="immediateFlush" value="true"/>
+        <param name="threshold" value="debug"/>
+        <param name="append" value="false"/>
+
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="conversionPattern" value="%m%n"/>
+        </layout>
+    </appender>
+
+    <appender name="PUBLICATION_DOM_BUILDER" class="org.apache.log4j.FileAppender">
+
+        <param name="file" value="src/main/resources/log/PublicationDOMBuilderLogger.log"/>
+        <param name="immediateFlush" value="true"/>
+        <param name="threshold" value="debug"/>
+        <param name="append" value="false"/>
+
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="conversionPattern" value="%m%n"/>
+        </layout>
+    </appender>
+
+    <appender name="PUBLICATION_SAX_BUILDER" class="org.apache.log4j.FileAppender">
+
+        <param name="file" value="src/main/resources/log/publicationSAXBuilderLogger.log"/>
+        <param name="immediateFlush" value="true"/>
+        <param name="threshold" value="debug"/>
+        <param name="append" value="false"/>
+
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="conversionPattern" value="%m%n"/>
+        </layout>
+    </appender>
+
+    <appender name="PUBLICATION_STAX_BUILDER" class="org.apache.log4j.FileAppender">
+
+        <param name="file" value="src/main/resources/log/publicationStAXBuilderLogger.log"/>
+        <param name="immediateFlush" value="true"/>
+        <param name="threshold" value="debug"/>
+        <param name="append" value="false"/>
+
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="conversionPattern" value="%m%n"/>
+        </layout>
+    </appender>
+
+    <appender name="FILE_RENDERER" class="org.apache.log4j.FileAppender">
+
+        <param name="file" value="src/main/resources/log/fileRendererLogger.log"/>
+        <param name="immediateFlush" value="true"/>
+        <param name="threshold" value="debug"/>
+        <param name="append" value="false"/>
+
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="conversionPattern" value="%m%n"/>
+        </layout>
+    </appender>
+
+    <appender name="VALIDATOR_XSD" class="org.apache.log4j.FileAppender">
+
+        <param name="file" value="src/main/resources/log/validatorXSDLogger.log"/>
+        <param name="immediateFlush" value="true"/>
+        <param name="threshold" value="debug"/>
+        <param name="append" value="false"/>
+
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="conversionPattern" value="%m%n"/>
+        </layout>
+    </appender>
+
+    <logger name="log4j.rootLogger" additivity="false">
+        <level value="DEBUG"/>
+        <appender-ref ref="ROOT"/>
+    </logger>
+
+    <logger name="PublicationDOMBuilderLogger" additivity="false">
+        <level value="DEBUG"/>
+        <appender-ref ref="PUBLICATION_DOM_BUILDER"/>
+    </logger>
+
+    <logger name="PublicationSAXBuilderLogger" additivity="false">
+        <level value="DEBUG"/>
+        <appender-ref ref="PUBLICATION_SAX_BUILDER"/>
+    </logger>
+
+    <logger name="PublicationStAXBuilderLogger" additivity="false">
+        <level value="DEBUG"/>
+        <appender-ref ref="PUBLICATION_STAX_BUILDER"/>
+    </logger>
+
+    <logger name="FileRendererLogger" additivity="false">
+        <level value="DEBUG"/>
+        <appender-ref ref="FILE_RENDERER"/>
+    </logger>
+
+    <logger name="ValidatorXSDLogger" additivity="false">
+        <level value="DEBUG"/>
+        <appender-ref ref="VALIDATOR_XSD"/>
+    </logger>
+
+</log4j:configuration>
