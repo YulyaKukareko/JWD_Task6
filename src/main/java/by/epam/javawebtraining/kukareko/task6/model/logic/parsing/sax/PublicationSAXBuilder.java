@@ -6,6 +6,7 @@ import org.xml.sax.SAXException;
 import org.xml.sax.XMLReader;
 import org.xml.sax.helpers.XMLReaderFactory;
 import java.io.IOException;
+import java.util.concurrent.locks.ReentrantLock;
 
 /**
  * @author Yulya Kukareko
@@ -16,10 +17,12 @@ public class PublicationSAXBuilder extends AbstractPublicationBuilder {
     private PublicationHandler ph;
     private XMLReader reader;
     private static PublicationSAXBuilder instance;
+    private static final ReentrantLock LOCK;
     private static Logger LOGGER;
 
     static {
         LOGGER = Logger.getLogger("PublicationSAXBuilderLogger");
+        LOCK = new ReentrantLock();
     }
 
     private PublicationSAXBuilder() {
@@ -34,7 +37,11 @@ public class PublicationSAXBuilder extends AbstractPublicationBuilder {
 
     public static PublicationSAXBuilder getInstance() {
         if(instance == null) {
-            instance = new PublicationSAXBuilder();
+            LOCK.lock();
+            if(instance == null) {
+                instance = new PublicationSAXBuilder();
+            }
+            LOCK.unlock();
         }
         return instance;
     }

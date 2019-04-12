@@ -15,6 +15,7 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.IOException;
 import java.util.HashSet;
+import java.util.concurrent.locks.ReentrantLock;
 
 /**
  * @author Yulya Kukareko
@@ -23,11 +24,13 @@ import java.util.HashSet;
 public class PublicationDOMBuilder extends AbstractPublicationBuilder {
 
     private DocumentBuilder docBuilder;
+    private static final ReentrantLock LOCK;
     private static PublicationDOMBuilder instance;
     private static Logger LOGGER;
 
     static {
         LOGGER = Logger.getLogger("PublicationDOMBuilderLogger");
+        LOCK = new ReentrantLock();
     }
 
     private PublicationDOMBuilder() {
@@ -42,7 +45,11 @@ public class PublicationDOMBuilder extends AbstractPublicationBuilder {
 
     public static PublicationDOMBuilder getInstance() {
         if (instance == null) {
-            instance = new PublicationDOMBuilder();
+            LOCK.lock();
+            if(instance == null) {
+                instance = new PublicationDOMBuilder();
+            }
+            LOCK.unlock();
         }
         return instance;
     }

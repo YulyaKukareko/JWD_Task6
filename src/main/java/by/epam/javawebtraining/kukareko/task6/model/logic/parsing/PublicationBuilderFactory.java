@@ -8,12 +8,14 @@ import by.epam.javawebtraining.kukareko.task6.model.logic.parsing.stax.Publicati
  * @author Yulya Kukareko
  * @version 1.0 06 Apr 2019
  */
-public enum  PublicationBuilderFactory {
+public class  PublicationBuilderFactory {
 
-    SAX, STAX, DOM;
+    private enum TypeParser {
+        SAX, STAX, DOM;
+    }
 
     public static AbstractPublicationBuilder createPublicationBuilder(String typeParser) {
-        PublicationBuilderFactory type = PublicationBuilderFactory.valueOf(typeParser.toUpperCase());
+        TypeParser type = TypeParser.valueOf(typeParser.toUpperCase());
         AbstractPublicationBuilder builder = PublicationDOMBuilder.getInstance();
 
         switch (type) {

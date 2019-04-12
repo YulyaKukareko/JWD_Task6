@@ -14,6 +14,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.concurrent.locks.ReentrantLock;
 
 /**
  * @author Yulya Kukareko
@@ -22,12 +23,14 @@ import java.io.IOException;
 public class PublicationsStAXBuilder extends AbstractPublicationBuilder {
 
     private static PublicationsStAXBuilder instance;
+    private static final ReentrantLock LOCK;
     private static Logger LOGGER;
 
     private XMLInputFactory inputFactory;
 
     static {
         LOGGER = Logger.getLogger("PublicationStAXBuilderLogger");
+        LOCK = new ReentrantLock();
     }
 
     private PublicationsStAXBuilder() {
@@ -36,7 +39,11 @@ public class PublicationsStAXBuilder extends AbstractPublicationBuilder {
 
     public static PublicationsStAXBuilder getInstance(){
         if(instance == null) {
-            instance = new PublicationsStAXBuilder();
+            LOCK.lock();
+            if(instance == null) {
+                instance = new PublicationsStAXBuilder();
+            }
+            LOCK.unlock();
         }
         return instance;
     }
